@@ -21,6 +21,7 @@ class InputFile:
             return True
         else:
             self.archive = None
+            print(self.validation_status)
             return False
 
     def check_argv_input(self):
@@ -107,7 +108,20 @@ class OutputFile:
 
         if(self.validation_status == "passed"):
             for name,algorithm in algorithms.items():
-                print(f"{name}  {algorithm.time_ms}ms {algorithm.count} comps")
+                self.archive.writelines(f"{name}: {self.write_array(algorithm.array)}, {algorithm.count} comp, {algorithm.time_ms} ms \n")
+
+    def generate_error(self,error):
+        if(self.validation_status == "passed"):
+            self.archive.writelines("Arquivo Invalido!")
+        else:
+            print(self.validation_status)
+
+
+    def write_array(self,array):
+        str = ""
+        for element in array:
+            str += f"{element} "
+        return str[:-1]
 
     def check_argv_input(self):
         try:
@@ -296,19 +310,12 @@ class SortAlgorithms:
 
     def run_all_sort_algoritms(self):
 
-        self.algorithms['bubble   _sort']    = BubbleSort(self.array.copy())
-        self.algorithms['insertion_sort'] = InsertionSort(self.array.copy())
-        # self.algorithms['selection_sort'] = SelectionSort(self.array.copy())
-        self.algorithms['heap     _sort']      = HeapSort(self.array.copy())
-        self.algorithms['quick    _sort']     = QuickSort(self.array.copy())
-        # self.algoritms['merge_sort']     = MergeSort(self.array)
-
-    def generate_output_file(self):
-        output_file = OutputFile()
-        if(output_file.validate()):
-            output_file.generate(self.algorithms)
-        else:
-            print(output_file.validation_status)
+        self.algorithms['bubbleSort']    = BubbleSort(self.array.copy())
+        self.algorithms['insertionSort'] = InsertionSort(self.array.copy())
+        # self.algorithms['selectionSort'] = SelectionSort(self.array.copy())
+        # self.algoritms['mergeSort']     = MergeSort(self.array)
+        self.algorithms['quickSort']     = QuickSort(self.array.copy())
+        self.algorithms['heapSort']      = HeapSort(self.array.copy())
 
 class Main:
 
@@ -318,12 +325,16 @@ class Main:
 
     def start(self):
         input_file = InputFile()
-        if(input_file.validate()):
-            SortAlgorithms(input_file.get_first_param(), input_file.get_second_param()).generate_output_file()
+        output_file = OutputFile()
+
+        input_validate = input_file.validate()
+        output_validate = output_file.validate()
+
+        if(input_validate and output_validate):
+            Sort = SortAlgorithms(input_file.get_first_param(), input_file.get_second_param())
+            output_file.generate(Sort.algorithms)
         else:
-            print(input_file.validation_status)
-
-
+            output_file.generate_error(input_file.validation_status)
 
 
 MainOBJ = Main()
