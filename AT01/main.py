@@ -2,6 +2,8 @@ import sys
 from random import randint
 import time
 
+sys.setrecursionlimit(100000)#tentativa de evitar erros de maximo de recursão
+
 class InputFile:
 
     def __init__(self):
@@ -118,8 +120,10 @@ class OutputFile:
     def generate(self,algorithms):
         #Função que recebe um dicionario de objetos, estes objetos são os algorimos de ordenação estudados
         #e seus atributos são os dados necessarios para a construção do arquivo de saida
+
         if(self.validation_status == "passed"):
             for name,algorithm in algorithms.items():
+                # algorithm.array = [] #Descomente essa linha para não gravar o array no arquivo final, facilita a leitura dos dados
                 self.archive.writelines(f"{name}: {self.write_array(algorithm.array)}, {algorithm.count} comp, {algorithm.time_ms} ms \n")
 
     def generate_error(self,error):
@@ -185,18 +189,18 @@ class BubbleSort(Sorting):
 
     def bubble_sort(self,array, n):
 
-        # Caso base da recursão, se n == 1, significa que o array já está ordenado
+        #Se n == 1, significa que o array já está ordenado
         if n == 1:
             return array
 
-        # Laço for que percorre o array e troca de lugar os elementos adjacentes caso o elemento à esquerda seja maior que o elemento à direita
-        for j in range(n-1):
-          if array[j] > array[j+1]:
-            array[j], array[j+1] = array[j+1], array[j]
-            self.count += 1
-
-        # Chamada recursiva da função bubble_sort com n-1, ou seja, reduzindo o tamanho do array
-        self.bubble_sort(array, n-1)
+        #Preferi a abordagem não recursiva pois a pilha de recursão do bubble sort é MUITO GRANDE
+        for i in range(n):
+            # Laço for que percorre o array e troca de lugar os elementos adjacentes caso o elemento à esquerda seja maior que o elemento à direita
+            for j in range(n-1):
+                self.count += 1
+                if array[j] > array[j+1]:
+                    array[j], array[j+1] = array[j+1], array[j]
+            n -= 1
 
         # Retorna o array ordenado
         return array
@@ -254,12 +258,12 @@ class SelectionSort(Sorting):
              # O loop interno começa na posição seguinte a N e vai até o final da lista
             for i in range(N + 1, TAM):
                 # Se o elemento atual for menor do que o elemento na posição do menor numero, atualiza o menor numero
+                self.count += 1
                 if V[i] < V[menor]:
                     menor = i
             # Se o menor numero não estiver na posição atual (ou seja, se houve uma troca), troca os valores
             if menor != N:
                 V[N], V[menor] = V[menor], V[N]
-                self.count += 1
 
         return V
 
@@ -289,7 +293,6 @@ class HeapSort(Sorting):
         for i in range(n-1, 0, -1):
             # Troca o maior elemento, que é o primeiro do heap, com o último elemento não ordenado do array
             array[i], array[0] = array[0], array[i]
-            self.count += 1
             # Reorganiza o heap para manter a propriedade de heap máximo
             self.heapify(array, i, 0)
 
@@ -299,17 +302,18 @@ class HeapSort(Sorting):
         R = 2 * i + 2# Calcula a posição do filho da direita
 
         # Se a posição do filho da esquerda é válida e o elemento na posição i é menor do que o elemento na posição L, atualiza a maior posição
+        self.count += 1
         if L < n and array[i] < array[L]:
             maior = L
 
         # Se a posição do filho da direita é válida e o elemento na posição maior é menor do que o elemento na posição R, atualiza a maior posição
+        self.count += 1
         if R < n and array[maior] < array[R]:
             maior = R
 
         # Se a maior posição não é mais a posição atual, troca os elementos e reorganiza o heap a partir da nova posição atual
         if maior != i:
             array[i],array[maior] = array[maior],array[i]
-            self.count += 1
             self.heapify(array, n, maior)
 
 class QuickSort(Sorting):
@@ -336,15 +340,16 @@ class QuickSort(Sorting):
                 #Encontra elementos maiores que o pivo, da esquerda para a direita
                 while(array[left] <= pivot and left < end):
                     left += 1
+                    self.count += 1
 
                 #Encontra elementos menores que o pivo, da direita para a esquerda
                 while(array[right] > pivot and right >= start):
                     right -= 1
+                    self.count += 1
 
                 #Caso o elemento encontrado estiver posicionado do lado errado do pivo, troca-os
                 if(left < right):
                     array[left], array[right] = array[right], array[left]
-                    self.count += 1
 
             #poe o pivo na posição correta
             array[start], array[right] = array[right], array[start]
@@ -378,14 +383,13 @@ class MergeSort(Sorting):
         while left_index < len(left) and right_index < len(right):
 
             #se um elemento da porção esquerda, for menor que outro da porção direita
+            self.count += 1
             if left[left_index] < right[right_index]:
                 #salva o elemento no array auxiliar
                 array_aux.append(left[left_index])
-                self.count += 1
                 left_index += 1
             else:#se um elemento da porção direita, for menor que outro da porção esquerda
                 array_aux.append(right[right_index])#salva o menor no array auxiliar
-                self.count += 1
                 right_index += 1
 
         #concatena o array auxiliar, (que tem elementos menores) com o resto de left e right, que podem ter os elementos maiores que sobraram
@@ -408,12 +412,12 @@ class MergeSort(Sorting):
 
 class SortAlgorithms:
 
-
     #está classe é responsavel por atender aos requisitos da atividade
     def __init__(self,lenght,option):
         self.lenght = lenght
         self.array = self.set_array_with_generate_options(option)
         self.algorithms = {}
+
         self.run_all_sort_algoritms()
 
     def set_array_with_generate_options(self,option):
@@ -437,7 +441,7 @@ class SortAlgorithms:
 class Main:
     #está é a classe principal, que inicia o script, faz as validações dos arquivos de entrada e saida
     #e exibe o erro no console caso algo de errado
-    
+
     def __init__(self):
         self.start()
 
