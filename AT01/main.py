@@ -96,6 +96,7 @@ class InputFile:
         if(self.validation_status == "passed"):
             return self.archive_reseted().readlines()[1][0]
 
+
 class OutputFile:
 
     def __init__(self):
@@ -151,10 +152,19 @@ class OutputFile:
         except Exception as e:
             self.validation_status = "An output file is required."
 
+
 class Sorting:
-    #está classe tem o unico objetivo implementar a função sort
+    #está classe tem o objetivo de implementar a função sort e atributos comuns
     #em todas as classes que a herdarem. A função sort é chamada no construtor das classes filhas
     #e sempre fara a contagem do tempo de execução em milisegundos
+    def __init__(self,array,option='asc'):
+        self.array = array
+        self.length = len(array)
+        self.option = option
+        self.count = 0
+        self.time_ms = 0
+        self.sort()
+
     def sort(self):
         self.time_ms = time.time()
         if(self.option == "asc"):
@@ -165,7 +175,7 @@ class Sorting:
 
 
 #todas as classes que herdam de Sorting, tem a mesma estrutura.
-#os atributos são os dados necessarios para o preenchimento do arquivo de saida
+#os atributos são os dados necessarios para o preenchimento do arquivo de saida, herdados de Sorting
 #e são preenchidos na execução da ordenação
 #o metodo sort chamado no construtor é herdado de Sorting, e marca o tempo de execução
 
@@ -176,13 +186,7 @@ class Sorting:
 class BubbleSort(Sorting):
 
     def __init__(self,array,option='asc'):
-        super()
-        self.array = array
-        self.length = len(array)
-        self.option = option
-        self.count = 0
-        self.time_ms = 0
-        self.sort()
+        super().__init__(array,option)
 
     def sort_asc(self):
         self.array = self.bubble_sort(self.array,len(self.array))
@@ -205,16 +209,11 @@ class BubbleSort(Sorting):
         # Retorna o array ordenado
         return array
 
+
 class InsertionSort(Sorting):
 
     def __init__(self,array,option='asc'):
-        super()
-        self.array = array
-        self.length = len(array)
-        self.option = option
-        self.count = 0
-        self.time_ms = 0
-        self.sort()
+        super().__init__(array,option)
 
     def sort_asc(self):
         #um array com apenas 1 elemento já esta ordenado
@@ -235,16 +234,11 @@ class InsertionSort(Sorting):
             #insere o elemento desordenado
             self.array[j+1] = aux
 
+
 class SelectionSort(Sorting):
 
     def __init__(self,array,option='asc'):
-        super()
-        self.array = array
-        self.length = len(array)
-        self.option = option
-        self.count = 0
-        self.time_ms = 0
-        self.sort()
+        super().__init__(array,option)
 
     def sort_asc(self):
         self.array = self.selection_sort(self.array,self.length)
@@ -267,16 +261,11 @@ class SelectionSort(Sorting):
 
         return V
 
+
 class HeapSort(Sorting):
 
     def __init__(self,array,option='asc'):
-        super()
-        self.array = array
-        self.length = len(array)
-        self.option = option
-        self.count = 0
-        self.time_ms = 0
-        self.sort()
+        super().__init__(array,option)
 
     def sort_asc(self):
         self.heapSort(self.array)
@@ -316,19 +305,14 @@ class HeapSort(Sorting):
             array[i],array[maior] = array[maior],array[i]
             self.heapify(array, n, maior)
 
+
 class QuickSort(Sorting):
 
     def __init__(self,array,option='asc'):
-        super()
-        self.array = array
-        self.length = len(array)-1
-        self.option = option
-        self.count = 0
-        self.time_ms = 0
-        self.sort()
+        super().__init__(array,option)
 
     def sort_asc(self):
-        self.quick_sort_first_pivot(self.array,0,self.length)
+        self.quick_sort_first_pivot(self.array,0,self.length-1)
 
     def quick_sort_first_pivot(self, array, start, end):
 
@@ -360,16 +344,11 @@ class QuickSort(Sorting):
             self.quick_sort_first_pivot(array, right+1, end)
         self.array = array
 
+
 class MergeSort(Sorting):
 
     def __init__(self,array,option='asc'):
-        super()
-        self.array = array
-        self.length = len(array)-1
-        self.option = option
-        self.count = 0
-        self.time_ms = 0
-        self.sort()
+        super().__init__(array,option)
 
     def sort_asc(self):
         self.array = self.merge_sort(self.array)
@@ -397,7 +376,6 @@ class MergeSort(Sorting):
         array_aux += right[right_index:]
         return array_aux
 
-
     def merge_sort(self,array):
         if len(array) <= 1:#Caso base
             return array
@@ -409,6 +387,7 @@ class MergeSort(Sorting):
 
         #Ordena o vetor na volta da recursão
         return self.merge(left, right)
+
 
 class SortAlgorithms:
 
@@ -438,6 +417,7 @@ class SortAlgorithms:
         self.algorithms['quickSort']     = QuickSort(self.array.copy())
         self.algorithms['heapSort']      = HeapSort(self.array.copy())
 
+
 class Main:
     #está é a classe principal, que inicia o script, faz as validações dos arquivos de entrada e saida
     #e exibe o erro no console caso algo de errado
@@ -457,5 +437,6 @@ class Main:
             output_file.generate(Sort.algorithms)
         else:
             output_file.generate_error(input_file.validation_status)
+
 
 MainOBJ = Main()
