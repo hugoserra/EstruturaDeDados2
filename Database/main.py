@@ -1,22 +1,20 @@
-from Libs.Database import Database, Register
+from Libs.SGBD import SGBD
 
-DB = Database().validate()
-DB.set_database_archive("Metadados/DB.txt")
+# self.register_size = {"Titulo":50, "Produtora":40, "Genero":25, "Plataforma":15, "Ano":4, "Classificacao":12, "Preco":7, "Midia":8, "Tamanho":7}
 
-DB.register.set_attribute('nome','The Wither 2', 50)
-DB.register.set_attribute('Preco','150', 5)
-DB.register.set_attribute('Categoria','Medieval', 15)
-DB.register.set_attribute('Idade','15', 3)
-DB.set_fixed_register()
+MySGBD = SGBD()
+MySGBD.set_attribute('Titulo','The Wither 2')
+MySGBD.set_attribute('Produtora','Riot Games')
+MySGBD.set_attribute('Genero','Medieval')
+MySGBD.set_attribute('Plataforma','All')
+MySGBD.set_attribute('Ano','2016')
+MySGBD.set_attribute('Classificacao','16')
+MySGBD.set_attribute('Preco','R$ 130')
+MySGBD.set_attribute('Midia','Xbox')
+MySGBD.set_attribute('Tamanho','23.5')
+MySGBD.write_register()
 
-DB.register.set_attribute('nome','Assassins Creed',50)
-DB.register.set_attribute('Preco','139',5)
-DB.register.set_attribute('Categoria','Medieval',15)
-DB.register.set_attribute('Idade','19',3)
-DB.set_fixed_register()
-
-registers = DB.get_fixed_registers({"nome":49, "Preco":4, "Categoria":14, "Idade":2})
-print(registers)
+print(MySGBD.read_registers())
 
 
 
