@@ -12,10 +12,10 @@ class SGBD:
             self.database.set_database_archive("Metadados/DB.txt")
 
     def set_attribute(self,name,value):
-        self.database.set_attribute(name,value)
+        self.database.register.set_attribute(name,value)
 
-    def write_register(self):
-        self.database.write_register()
+    def write(self):
+        self.database.write()
 
-    def read_registers(self):
-        return self.database.read_registers()
+    def read(self):
+        return self.database.read()
