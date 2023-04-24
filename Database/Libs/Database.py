@@ -11,11 +11,11 @@ class Tools:
     def split_by_size(self,str,size):
         pointer = 0
         registers = []
-        for register_size in range(0,len(str),size):
+        for register_size in range(size,len(str)+1,size):
             registers.append(str[pointer:register_size])
             pointer = register_size
 
-        return registers[1:]
+        return registers
 
     def split_by_bytes(self,str):
 
@@ -23,10 +23,12 @@ class Tools:
         while(pointer < size):
             attributes = str[pointer:pointer+bytes].split("|")
             attributes.pop(0)
-            registers.append(attributes)
+            if(bytes != 1):
+                registers.append(attributes)
             pointer += bytes
             bytes = str[pointer: pointer+str[pointer:].find('|')]
-            bytes = int(bytes) if(bytes != "") else 0
+            bytes = int(bytes) if(bytes != "") else 1
+
 
         return registers
 
@@ -172,6 +174,7 @@ class DatabaseDelimiter(Database):
 
             for str_register in self.database.archive.readlines():
                 register = Register()
+                str_register = str_register[:-1]
                 attributes = str_register.split("|")
                 register.set_attributes(dict(zip(self.fields, attributes)))
                 registers.append(register.get_attributes())
