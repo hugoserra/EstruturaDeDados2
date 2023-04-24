@@ -5,6 +5,9 @@ class Tools:
     def set_size(self,str,size):
         return f"{str}" + (size-len(str)) * " "
 
+    def set_pipe(self,str):
+        return f"{str}|"
+
     def split_by_size(self,str,size):
         pointer = 0
         registers = []
@@ -13,9 +16,6 @@ class Tools:
             pointer = register_size
 
         return registers[1:]
-
-    def set_pipe(self,str):
-        return f"{str}|"
 
 
 class Register:
@@ -85,18 +85,27 @@ class DatabaseFixedFields(Database):
                 attribute = self.register.get_attributes()[key] if(key in self.register.get_attributes()) else ""
                 register_fixed_fields += self.set_pipe(attribute)
 
-            self.database.write(f"{register_fixed_fields}\n")
+            self.database.write(f"{register_fixed_fields}")
             self.register = Register()
 
         def read(self):
             self.database.pointer_reset()
             registers = []
 
-            for str_register in self.database.archive.readlines():
-                register = Register()
-                attributes = str_register.split("|")
-                register.set_attributes(dict(zip(self.fields, attributes)))
-                registers.append(register.get_attributes())
+            register, count, attributes = Register(), 0, []
+            for attribute in self.database.archive.read().split("|"):
+                
+                if(count == len(self.fields)):
+                    register.set_attributes(dict(zip(self.fields, attributes)))
+                    registers.append(register.get_attributes())
+                    register, count, attributes = Register(), 0, []
+
+
+                if(count < len(self.fields)):
+                    attributes.append(attribute)
+                    count+=1
+
+
 
             return registers
 
