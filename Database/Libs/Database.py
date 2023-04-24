@@ -5,11 +5,16 @@ class Tools:
     def set_size(self,str,size):
         return f"{str}" + (size-len(str)) * " "
 
+    def set_pipe(self,str):
+        return f"{str}|"
 
 class Register:
 
     def set_attribute(self,name,value):
         self.__dict__[name] = value
+
+    def set_attributes(self,dict):
+        self.__dict__ = dict.copy()
 
     def get_attributes(self):
         return self.__dict__.copy()
@@ -25,7 +30,7 @@ class Database(Tools):
         self.database = DatabaseFile(archive_name)
 
 
-class DatabaseFixed(Database):
+class DatabaseFixedSize(Database):
 
     def __init__(self):
         super().__init__()
@@ -56,6 +61,33 @@ class DatabaseFixed(Database):
         return registers
 
 
+class DatabaseFixedFields(Database):
+
+        def __init__(self):
+            super().__init__()
+            self.fields = ["Titulo", "Produtora", "Genero", "Plataforma", "Ano", "Classificacao", "Preco", "Midia", "Tamanho"]
+
+        def write(self):
+            register_fixed_fields = ""
+
+            for key in self.fields:
+                attribute = self.register.get_attributes()[key] if(key in self.register.get_attributes()) else ""
+                register_fixed_fields += self.set_pipe(attribute)
+
+            self.database.write(f"{register_fixed_fields}\n")
+            self.register = Register()
+
+        def read(self):
+            self.database.pointer_reset()
+            registers = []
+
+            for str_register in self.database.archive.readlines():
+                register = Register()
+                attributes = str_register.split("|")
+                register.set_attributes(dict(zip(self.fields, attributes)))
+                registers.append(register.get_attributes())
+
+            return registers
 
 
 
@@ -66,12 +98,4 @@ class DatabaseFixed(Database):
 
 
 
-
-
-
-
-
-
-
-
-        #
+#
