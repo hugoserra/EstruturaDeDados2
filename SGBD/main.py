@@ -1,5 +1,5 @@
 from Libs.SGBD import SGBD
-import pandas as pd
+import pandas as pd #Pandas apenas é utilizado para fins de exibição indentada no terminal, nada mais.
 pd.set_option('display.max_rows', None)
 
 Games = SGBD('delimiter')
@@ -10,6 +10,7 @@ MySGBD_1 = SGBD('fixed_size')
 MySGBD_2 = SGBD('fixed_fields')
 MySGBD_3 = SGBD('size_in_bytes')
 MySGBD_4 = SGBD('delimiter')
+
 
 def Populate():
     for register in Games.read():
@@ -83,5 +84,5 @@ def ViewDatabases():
     print(pd.DataFrame(MySGBD_4.read()))
     print("=====================================================================================================================================================================")
 
-# Populate()
+# Populate() #Popula as bases com os dados de games.txt, com metodos especificos
 ViewDatabases()
