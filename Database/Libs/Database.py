@@ -5,8 +5,18 @@ class Tools:
     def set_size(self,str,size):
         return f"{str}" + (size-len(str)) * " "
 
+    def split_by_size(self,str,size):
+        pointer = 0
+        registers = []
+        for register_size in range(0,len(str),size):
+            registers.append(str[pointer:register_size])
+            pointer = register_size
+
+        return registers[1:]
+
     def set_pipe(self,str):
         return f"{str}|"
+
 
 class Register:
 
@@ -23,7 +33,7 @@ class Register:
 class Database(Tools):
 
     def __init__(self):
-        self.database = DatabaseFile("Metadados/games.txt")
+        self.database = DatabaseFile("Data/games.txt")
         self.register = Register()
 
     def set_database_archive(self,archive_name):
@@ -35,6 +45,7 @@ class DatabaseFixedSize(Database):
     def __init__(self):
         super().__init__()
         self.register_size = {"Titulo":50, "Produtora":40, "Genero":25, "Plataforma":15, "Ano":4, "Classificacao":12, "Preco":7, "Midia":8, "Tamanho":7}
+        self.size = 50+40+25+15+4+12+7+8+7
 
     def write(self):
         register_fixed_size = ""
@@ -43,14 +54,14 @@ class DatabaseFixedSize(Database):
             attribute = self.register.get_attributes()[key] if(key in self.register.get_attributes()) else ""
             register_fixed_size += self.set_size(attribute,self.register_size[key])
 
-        self.database.write(f"{register_fixed_size}\n")
+        self.database.write(f"{register_fixed_size}")
         self.register = Register()
 
     def read(self):
         self.database.pointer_reset()
         registers = []
 
-        for str_register in self.database.archive.readlines():
+        for str_register in self.split_by_size(self.database.archive.read(),self.size):
             register = Register()
             pointer = 0
             for attribute, size in self.register_size.items():
