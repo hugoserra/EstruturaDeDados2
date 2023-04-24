@@ -17,6 +17,18 @@ class Tools:
 
         return registers[1:]
 
+    def split_by_bytes(self,str):
+
+        bytes, size, registers, pointer = int(str.split('|')[0]), len(str), [], 0
+        while(pointer < size):
+            attributes = str[pointer:pointer+bytes].split("|")
+            attributes.pop(0)
+            registers.append(attributes)
+            pointer += bytes
+            bytes = str[pointer: pointer+str[pointer:].find('|')]
+            bytes = int(bytes) if(bytes != "") else 0
+
+        return registers
 
 class Register:
 
@@ -94,7 +106,7 @@ class DatabaseFixedFields(Database):
 
             register, count, attributes = Register(), 0, []
             for attribute in self.database.archive.read().split("|"):
-                
+
                 if(count == len(self.fields)):
                     register.set_attributes(dict(zip(self.fields, attributes)))
                     registers.append(register.get_attributes())
@@ -123,17 +135,15 @@ class DatabaseSizeBytes(Database):
                 attribute = self.register.get_attributes()[key] if(key in self.register.get_attributes()) else ""
                 register_fixed_fields += self.set_pipe(attribute)
 
-            self.database.write(f"{len(register_fixed_fields)}|{register_fixed_fields}\n")
+            self.database.write(f"{len(register_fixed_fields)+len(str(len(register_fixed_fields)))+1}|{register_fixed_fields}")
             self.register = Register()
 
         def read(self):
             self.database.pointer_reset()
             registers = []
 
-            for str_register in self.database.archive.readlines():
+            for attributes in self.split_by_bytes(self.database.archive.read()):
                 register = Register()
-                attributes = str_register.split("|")
-                register_size = attributes.pop(0)
                 register.set_attributes(dict(zip(self.fields, attributes)))
                 registers.append(register.get_attributes())
 
