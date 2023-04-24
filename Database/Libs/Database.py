@@ -91,7 +91,34 @@ class DatabaseFixedFields(Database):
 
 
 
+class DatabaseSizeBytes(Database):
 
+        def __init__(self):
+            super().__init__()
+            self.fields = ["Titulo", "Produtora", "Genero", "Plataforma", "Ano", "Classificacao", "Preco", "Midia", "Tamanho"]
+
+        def write(self):
+            register_fixed_fields = ""
+
+            for key in self.fields:
+                attribute = self.register.get_attributes()[key] if(key in self.register.get_attributes()) else ""
+                register_fixed_fields += self.set_pipe(attribute)
+
+            self.database.write(f"{len(register_fixed_fields)}|{register_fixed_fields}\n")
+            self.register = Register()
+
+        def read(self):
+            self.database.pointer_reset()
+            registers = []
+
+            for str_register in self.database.archive.readlines():
+                register = Register()
+                attributes = str_register.split("|")
+                register_size = attributes.pop(0)
+                register.set_attributes(dict(zip(self.fields, attributes)))
+                registers.append(register.get_attributes())
+
+            return registers
 
 
 
