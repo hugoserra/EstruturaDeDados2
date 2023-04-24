@@ -1,4 +1,4 @@
-from Libs.Database import DatabaseFixedSize,DatabaseFixedFields,DatabaseSizeBytes
+from Libs.Database import DatabaseFixedSize,DatabaseFixedFields,DatabaseSizeBytes,DatabaseDelimiter
 class SGBD:
 
     def __init__(self,type="fixed_size"):
@@ -16,6 +16,9 @@ class SGBD:
         elif(self.type == "size_in_bytes"):
             self.database = DatabaseSizeBytes()
             self.database.set_database_archive("Metadados/DB_size_bytes.txt")
+        elif(self.type == "delimiter"):
+            self.database = DatabaseDelimiter()
+            self.database.set_database_archive("Metadados/DB_delimiter.txt")
 
     def set_attribute(self,name,value):
         self.database.register.set_attribute(name,value)

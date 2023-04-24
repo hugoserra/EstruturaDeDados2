@@ -1,6 +1,6 @@
 from Libs.SGBD import SGBD
 
-MySGBD = SGBD('size_in_bytes')
+MySGBD = SGBD('delimiter')
 
 MySGBD.set_attribute('Titulo','The Wither 2')
 MySGBD.set_attribute('Produtora','Riot Games')
