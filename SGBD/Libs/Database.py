@@ -32,6 +32,23 @@ class Tools:
 
         return registers
 
+    def grep(self,consulta):
+
+        self.database.pointer_reset()
+        linhas = self.database.archive.readlines()
+        indexs = []
+
+        for i, linha in enumerate(linhas):
+            campos = linha.strip().split('|')
+            if consulta in campos:
+                indexs.append(i)
+
+        return indexs
+
+    def grep_register(self,consulta):
+        return [self.read()[x] for x in self.grep(consulta)];
+
+
 class Register:
 
     def set_attribute(self,name,value):
