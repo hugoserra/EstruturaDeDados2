@@ -8,8 +8,10 @@ class DatabaseFile:#Esta classe recebera a base de dados
         self.archive.write(register)
 
     def read(self):
-        self.pointer_reset()
-        return self.archive.read()
+        return self.pointer_reset().read()
+
+    def readlines(self):
+        return self.pointer_reset().readlines()
 
     def pointer_reset(self):
         self.archive.seek(0, 0)#Aponta o ponteiro de leitura para o inicio do arquivo

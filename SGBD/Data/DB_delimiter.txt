@@ -37,7 +37,7 @@ Valheim|Iron Gate AB|RPG|Multiplataforma|2021|12+|37.99|Digital|1.17|
 Left 4 Dead 2|Valve|FPS|Multiplataforma|2009|18+|20.69|Ambos|13.93|
 Hades|Supergiant Games|RPG|Multiplataforma|2019|14+|47.49|Digital|11.1|
 Need for Speed: Underground 2|Electronic Arts|Corrida|Multiplataforma|2004|Everyone|30.00|Fisica|3.00|
-Crash of the Titans|Radical Entertainment|Beat ‘em up|Multiplataforma|2007|10+|35.00|Fisica|3.00|
+Crash of the Titans|Radical Entertainment|Beat em up|Multiplataforma|2007|10+|35.00|Fisica|3.00|
 Guitar Hero |Activision|Musical|Multiplataforma|2005|Teen||Fisica|1.63|
 Guitar Hero II|Activision|Musical|Multiplataforma|2006|Teen||Fisica|2.92|
 Guitar Hero III|Activision|Musical|Multiplataforma|2007|Teen||Fisica|5.1|
