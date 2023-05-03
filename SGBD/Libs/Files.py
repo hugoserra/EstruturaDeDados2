@@ -10,6 +10,10 @@ class DatabaseFile:#Esta classe recebera a base de dados
     def read(self):
         return self.pointer_reset().read()
 
+    def readline(self):
+        line = self.archive.readline()
+        return line if line != "" else None
+
     def readlines(self):
         return self.pointer_reset().readlines()
 

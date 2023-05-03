@@ -17,19 +17,29 @@ class DatabaseTools:
     def set_pipe(self,str):
         return f"{str}|"
 
-    def grep(self,consulta):
-
-        linhas = self.DB_File.readlines()
-        indexs = []
-
-        for i, linha in enumerate(linhas):
-            if linha.find(consulta) != -1:
+    #Está é uma busca linear, diferente da implementação anterior.
+    #Assim, o arquivo não é inteiro alocado na memória para executar a busca
+    def grep(self,search):
+        self.DB_File.pointer_reset()
+        indexs, line, i = [], self.DB_File.readline(), 0
+        while line != None:
+            if(line.find(search) != -1):
                 indexs.append(i)
+            line, i = self.DB_File.readline(), i+1
 
         return indexs
 
-    def grep_register(self,consulta):
-        return [self.read()[x] for x in self.grep(consulta)];
+    #Tem as mesmas propriedades do metodo acima, e como na função grep do linux,
+    #retorna a linha do arquivo assim como esta escrita, e não o registro da linha correspondente
+    def grep_register(self,search):
+        self.DB_File.pointer_reset()
+        lines, line = [], self.DB_File.readline()
+        while line != None:
+            if(line.find(search) != -1):
+                lines.append(line)
+            line = self.DB_File.readline()
+
+        return lines
 
     def set_database_archive(self,archive_name):
         self.DB_File = DatabaseFile(archive_name)

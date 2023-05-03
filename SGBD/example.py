@@ -34,5 +34,5 @@ MySGBD.show()
 
 
 #Pesquisa linear no banco ("""""linear""""", entre muitas aspas. Por enquando le o bando todo e procura na memoria)
-MySGBD.grep('Fantasy')
-MySGBD.grep_register('Fantasy') # Pode printar na tela este registro, caso queira entender a estrutura
+print(MySGBD.grep('Fantasy'))
+print(MySGBD.grep_register('Fantasy')) # Pode printar na tela este registro, caso queira entender a estrutura
