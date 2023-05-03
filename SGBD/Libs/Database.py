@@ -41,6 +41,11 @@ class DatabaseTools:
 
         return lines
 
+    #retorna os registros correspondentes em forma de dicionario, onde os atributos podem ser recuperados
+    #mas não é uma função linear pois aloca toda a base na memoria ram (será atualizada futuramente)
+    def get_registers(self,search):
+        return [self.read()[x] for x in self.grep(search)]
+
     def set_database_archive(self,archive_name):
         self.DB_File = DatabaseFile(archive_name)
 
