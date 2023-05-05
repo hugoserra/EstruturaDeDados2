@@ -32,7 +32,6 @@ MySGBD.set_register({'Titulo': 'Hollow Knight',       'Produtora': 'Square Enix'
 # Exibe a database bem indentada
 MySGBD.show()
 
-
 #Pesquisa linear no banco ("""""linear""""", entre muitas aspas. Por enquando le o bando todo e procura na memoria)
 print(MySGBD.grep('Fantasy'))
 print(MySGBD.grep_register('Fantasy')) # Pode printar na tela este registro, caso queira entender a estrutura
