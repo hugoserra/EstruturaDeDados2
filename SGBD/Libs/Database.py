@@ -69,7 +69,6 @@ class Database(DatabaseTools):
 
     def __init__(self):
         self.Header = self.set_database_archive("Data/DB_delimiter.txt")
-        print(self.Header)
         self.register = Register()
         self.fields = ["Titulo", "Produtora", "Genero", "Plataforma", "Ano", "Classificacao", "Preco", "Midia", "Tamanho"]
 

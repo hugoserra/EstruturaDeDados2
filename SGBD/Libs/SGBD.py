@@ -39,3 +39,7 @@ class SGBD:
     def set_database_archive(self,archive):
         self.DB.set_database_archive(archive)
         return self
+    
+    def Header(self):
+        return self.DB.Header
+
