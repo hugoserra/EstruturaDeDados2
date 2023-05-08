@@ -10,7 +10,6 @@ class SGBD:
 
     def config(self):
         self.DB = Database()
-        self.DB.set_database_archive("Data/DB_delimiter.txt")
 
     def set_attribute(self,name,value):
         self.DB.register.set_attribute(name,value)

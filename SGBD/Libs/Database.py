@@ -48,12 +48,13 @@ class DatabaseTools:
 
     def set_database_archive(self,archive_name):
         self.DB_File = DatabaseFile(archive_name)
+        return self.DB_File.readline()
 
 
 class Database(DatabaseTools):
 
     def __init__(self):
-        self.DB_File = DatabaseFile("Data/games.txt")
+        self.Header = self.set_database_archive("Data/DB_delimiter.txt")
         self.register = Register()
         self.fields = ["Titulo", "Produtora", "Genero", "Plataforma", "Ano", "Classificacao", "Preco", "Midia", "Tamanho"]
 

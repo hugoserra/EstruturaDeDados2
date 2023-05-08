@@ -19,4 +19,5 @@ class DatabaseFile:#Esta classe recebera a base de dados
 
     def pointer_reset(self):
         self.archive.seek(0, 0)#Aponta o ponteiro de leitura para o inicio do arquivo
+        self.archive.readline()
         return self.archive
