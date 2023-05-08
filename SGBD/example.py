@@ -39,3 +39,5 @@ print(MySGBD.grep_register('Fantasy')) # Pode printar na tela este registro, cas
 #Exibe o cabeçalho do arquivo de banco de dados
 print("\n")
 print(MySGBD.Header())
+
+#execute este arquivo para ver ao vivaço as alterações em example.txt

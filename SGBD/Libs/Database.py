@@ -1,5 +1,6 @@
 from Libs.Files import DatabaseFile
 
+
 class Register:
 
     def set_attribute(self,name,value):
@@ -16,6 +17,10 @@ class DatabaseTools:
 
     def set_pipe(self,str):
         return f"{str}|"
+
+    def set_database_archive(self,archive_name):
+        self.DB_File = DatabaseFile(archive_name)
+        self.Header = self.get_header()
 
     #Está é uma busca linear, diferente da implementação anterior.
     #Assim, o arquivo não é inteiro alocado na memória para executar a busca
@@ -45,14 +50,12 @@ class DatabaseTools:
     #mas não é uma função linear pois aloca toda a base na memoria ram (será atualizada futuramente)
     def get_registers(self,search):
         return [self.read()[x] for x in self.grep(search)]
-
-    def set_database_archive(self,archive_name):
-        self.DB_File = DatabaseFile(archive_name)
-        return self.scrap_header(str(self.DB_File.get_first_line()))
     
-    def scrap_header(self,header_str):
+    def get_header(self):
+        header_str = self.DB_File.get_header()
         header = {}
         attributes = header_str.split(',')
+
         for attribute in attributes:
             key_value = attribute.split('=')
             try:
@@ -60,18 +63,27 @@ class DatabaseTools:
             except:
                 pass
             header[key_value[0]] = key_value[1]
+
         return header
-
-
-
+    
+    def update_header(self):
+        header_str = ''
+        for key,value in self.Header.items(): 
+            header_str += f"{key}={value},"
+        
+        header_str = f"{header_str[:-1]}"
+        self.DB_File.set_header(header_str)
+        
+    
 
 class Database(DatabaseTools):
 
     def __init__(self):
-        self.Header = self.set_database_archive("Data/DB_delimiter.txt")
-        self.register = Register()
+        self.set_database_archive("Data/DB_delimiter.txt")
+        self.Header = self.get_header()
         self.fields = ["Titulo", "Produtora", "Genero", "Plataforma", "Ano", "Classificacao", "Preco", "Midia", "Tamanho"]
-
+        self.register = Register()
+        
     def write(self):
         register_fixed_fields = ""
 
@@ -81,6 +93,9 @@ class Database(DatabaseTools):
 
         self.DB_File.write(f"{register_fixed_fields}\n")
         self.register = Register()
+
+        self.Header['REG_N'] += 1
+        self.update_header()
 
     def read(self):
         registers = []

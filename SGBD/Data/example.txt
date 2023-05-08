@@ -1,13 +1,4 @@
-REG_N=15,TOP=-1
-The Wither 2|Riot Games|RPG|Multplataforma|2010|16+|99.0|Digital|15.5|
-Final Fantasy XV|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Hollow Knight|Square Enix|Metroidvania|Multplataforma|2011|Teen|125.0|Ambos|20|
-The Wither 2|Riot Games|RPG|Multplataforma|2010|16+|99.0|Digital|15.5|
-Final Fantasy XV|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Hollow Knight|Square Enix|Metroidvania|Multplataforma|2011|Teen|125.0|Ambos|20|
-The Wither 2|Riot Games|RPG|Multplataforma|2010|16+|99.0|Digital|15.5|
-Final Fantasy XV|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Hollow Knight|Square Enix|Metroidvania|Multplataforma|2011|Teen|125.0|Ambos|20|
+REG_N=6,TOP=-1                                                  
 The Wither 2|Riot Games|RPG|Multplataforma|2010|16+|99.0|Digital|15.5|
 Final Fantasy XV|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Hollow Knight|Square Enix|Metroidvania|Multplataforma|2011|Teen|125.0|Ambos|20|
