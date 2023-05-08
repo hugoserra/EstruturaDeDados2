@@ -1,3 +1,4 @@
+REG_N=10,TOP=12
 The Witcher 3 - Wild Hunt|CD Projekt|Action RPG|Multiplataforma|2015|Mature 17+|79.90|Ambos|32.0|
 Hollow Knight|Team Cherry|Metroidvania|Multiplataforma|2017|Everyone 10+|24.97|Digital|5.3|
 The Legend of Zelda: Breath of the Wild|Nintendo|Action-adventure|Switch|2017|Everyone 10+|199.90|Ambos|13.4|

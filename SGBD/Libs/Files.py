@@ -21,3 +21,7 @@ class DatabaseFile:#Esta classe recebera a base de dados
         self.archive.seek(0, 0)#Aponta o ponteiro de leitura para o inicio do arquivo
         self.archive.readline()
         return self.archive
+    
+    def get_first_line(self):
+        self.archive.seek(0, 0)#Aponta o ponteiro de leitura para o inicio do arquivo
+        return self.archive.readline()[:-1]

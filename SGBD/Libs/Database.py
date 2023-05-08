@@ -48,13 +48,28 @@ class DatabaseTools:
 
     def set_database_archive(self,archive_name):
         self.DB_File = DatabaseFile(archive_name)
-        return self.DB_File.readline()
+        return self.scrap_header(str(self.DB_File.get_first_line()))
+    
+    def scrap_header(self,header_str):
+        header = {}
+        attributes = header_str.split(',')
+        for attribute in attributes:
+            key_value = attribute.split('=')
+            try:
+                key_value[1] = int(key_value[1])
+            except:
+                pass
+            header[key_value[0]] = key_value[1]
+        return header
+
+
 
 
 class Database(DatabaseTools):
 
     def __init__(self):
         self.Header = self.set_database_archive("Data/DB_delimiter.txt")
+        print(self.Header)
         self.register = Register()
         self.fields = ["Titulo", "Produtora", "Genero", "Plataforma", "Ano", "Classificacao", "Preco", "Midia", "Tamanho"]
 
