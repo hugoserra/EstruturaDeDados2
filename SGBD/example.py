@@ -15,7 +15,7 @@ MySGBD = SGBD().set_database_archive("Data/example.txt")
 .write())
 
 
-# seta o um registro atravez de um dicionarios com os atributos correspondentes
+# seta o um registro atravez de um dicionarios com os atributos correspondentes eae
 MySGBD.set_register({'Titulo': 'Final Fantasy XV',    'Produtora': 'Square Enix',
                      'Genero': 'Action RPG',          'Plataforma': 'Multplataforma',
                      'Ano': '2014',                   'Classificacao': 'Teen',
