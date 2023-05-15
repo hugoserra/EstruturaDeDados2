@@ -16,5 +16,4 @@ MySGBD.set_register({'Titulo': 'Final Fantasy X',    'Produtora': 'Square Enix',
                      'Preco': '125.0',                'Midia': 'Ambos',
                      'Tamanho': '100.5'}).write()
 
-# MySGBD.show()
-MySGBD.delete(6)
+print(MySGBD.grep('hugo'))

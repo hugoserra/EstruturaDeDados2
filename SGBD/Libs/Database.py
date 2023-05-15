@@ -28,7 +28,7 @@ class DatabaseTools:
         self.DB_File.pointer_reset()
         indexs, line, i = [], self.DB_File.readline(), 0
         while line != None:
-            if(line.find(search) != -1):
+            if(line.find(search) != -1 and line[0] != "*"):
                 indexs.append(i)
             line, i = self.DB_File.readline(), i+1
 
