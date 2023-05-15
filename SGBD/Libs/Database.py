@@ -40,7 +40,7 @@ class DatabaseTools:
         self.DB_File.pointer_reset()
         lines, line = [], self.DB_File.readline()
         while line != None:
-            if(line.find(search) != -1):
+            if(line.find(search) != -1 and line[0] != "*"):
                 lines.append(line)
             line = self.DB_File.readline()
 
