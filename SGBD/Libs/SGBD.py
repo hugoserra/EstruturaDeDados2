@@ -42,4 +42,6 @@ class SGBD:
     
     def Header(self):
         return self.DB.Header
-
+    
+    def delete(self,index):
+        self.DB.delete(index)

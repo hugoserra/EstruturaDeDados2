@@ -108,3 +108,22 @@ class Database(DatabaseTools):
             registers.append(register.get_attributes())
 
         return registers
+    
+    def delete(self,index):
+
+        self.DB_File.pointer_reset()
+
+        for x in range(0,index-1):
+            line = self.DB_File.archive.readline()
+            if(line == ""):
+                return 0
+            
+        self.DB_File.archive.seek(self.DB_File.archive.tell())#Aponta o ponteiro de leitura para o inicio do arquivo
+        self.DB_File.archive.write(f"*{self.Header['TOP']}|")
+
+        self.Header['TOP'] = index;
+        self.update_header()
+
+
+            
+
