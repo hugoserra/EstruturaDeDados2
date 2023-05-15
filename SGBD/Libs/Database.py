@@ -104,8 +104,9 @@ class Database(DatabaseTools):
             register = Register()
             str_register = str_register[:-1]
             attributes = str_register.split("|")
-            register.set_register(dict(zip(self.fields, attributes)))
-            registers.append(register.get_attributes())
+            if(str_register[0] != "*"):
+                register.set_register(dict(zip(self.fields, attributes)))
+                registers.append(register.get_attributes())
 
         return registers
     
