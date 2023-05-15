@@ -14,7 +14,7 @@ Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.
 Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
+*Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
@@ -23,7 +23,7 @@ Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.
 Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
+*Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|

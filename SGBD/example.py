@@ -40,4 +40,7 @@ print(MySGBD.grep_register('Fantasy')) # Pode printar na tela este registro, cas
 print("\n")
 print(MySGBD.Header())
 
+#deleta o quinto registro da base, e atualiza o top
+MySGBD.delete(5)
+
 #execute este arquivo para ver ao vivaço as alterações em example.txt

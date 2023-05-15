@@ -125,6 +125,20 @@ class Database(DatabaseTools):
         self.Header['TOP'] = index;
         self.update_header()
 
+    #função não linear, carrega tudo na memoria
+    def storage_compact(self):
 
-            
+        archive_name = self.DB_File.archive_name
+        database = self.read()
+        self.set_database_archive("Data/aux.txt")
+        self.get_header()
+
+        for register in database:
+            print(register)
+            self.register.set_register(register)
+            self.write()
+
+        self.set_database_archive(archive_name)
+        self.Header = self.get_header()
+
 
