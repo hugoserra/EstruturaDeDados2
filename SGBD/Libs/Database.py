@@ -115,6 +115,7 @@ class Database(DatabaseTools):
             attribute = self.register.get_attributes()[key] if(key in self.register.get_attributes()) else ""
             register_fixed_fields += self.set_pipe(attribute)
 
+        register_fixed_fields = register_fixed_fields[:-1]
         self.DB_File.pointer_reset()
         if(self.DB_File.archive.read().find(register_fixed_fields) == -1):
             self.DB_File.write(f"{register_fixed_fields}\n")
