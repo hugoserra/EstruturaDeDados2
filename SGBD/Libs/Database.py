@@ -1,6 +1,7 @@
 from Libs.Files import DatabaseFile
 
-
+# classe responsavel por armazenar o registro de maneira facil de atualizar ou recuperar
+# utilizada como um dos atributos da classe Database
 class Register:
 
     def set_attribute(self,name,value):
@@ -12,7 +13,8 @@ class Register:
     def get_attributes(self):
         return self.__dict__.copy()
 
-
+# Esta classe abriga algums métodos uteis porem muito especificos, é herdada por Database
+# Assim, Database herda esses métodos, mas abstraindo a complexidade do código da classe Database
 class DatabaseTools:
 
     def set_pipe(self,str):
@@ -76,6 +78,8 @@ class DatabaseTools:
         
     
 
+# Os metodos desta classe (fora aqueles que são herdados de DatabaseTools) 
+# são responsaveis pela manipulação do arquivo .txt
 class Database(DatabaseTools):
 
     def __init__(self):
@@ -125,7 +129,7 @@ class Database(DatabaseTools):
         self.Header['TOP'] = index;
         self.update_header()
 
-    #função não linear, carrega tudo na memoria
+    #função não linear, carrega tudo na memoria, vai ser corrigida futuramente
     def storage_compact(self):
 
         archive_name = self.DB_File.archive_name

@@ -1,6 +1,8 @@
 from Libs.Database import Database
 import pandas as pd #Pandas apenas é utilizado para fins de exibição indentada no terminal, nada mais.
 
+# A class SGBD é uma fachada para a manipulaçao da database, pode ser utilizada para 
+# auxiliar na compreensao do código.
 class SGBD:
 
     def __init__(self):
@@ -9,7 +11,7 @@ class SGBD:
         self.config()
 
     def config(self):
-        self.DB = Database()
+        self.DB = Database() # a classe Database é responsavel por todas as operações de r+ na base.txt
 
     def set_attribute(self,name,value):
         self.DB.register.set_attribute(name,value)
