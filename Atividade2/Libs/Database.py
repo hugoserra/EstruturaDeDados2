@@ -153,15 +153,14 @@ class Database(DatabaseTools):
         self.update_header()
 
     #função não linear, carrega tudo na memoria, vai ser corrigida futuramente
-    def storage_compact(self):
+    def storage_compact(self,output_file):
 
         archive_name = self.DB_File.archive_name
         database = self.read()
-        self.set_database_archive("Data/aux.txt")
+        self.set_database_archive(output_file)
         self.get_header()
 
         for register in database:
-            print(register)
             self.register.set_register(register)
             self.write()
 
