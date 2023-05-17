@@ -44,13 +44,13 @@ print("\n")
 print(MySGBD.Header())
 
 #deleta o quinto registro da base, e atualiza o top
-MySGBD.delete(5)
+MySGBD.delete(1)
 
-#deleta todo registro que tem Multplataforma em algum lugar 
-#método ainda não recomendado, possui alguns bugs as referencias de arquivos deletados
-[MySGBD.delete(i) for i in MySGBD.grep("Multplataforma")]
+# #deleta todo registro que tem Multplataforma em algum lugar 
+# #método ainda não recomendado, possui alguns bugs as referencias de arquivos deletados
+# [MySGBD.delete(i) for i in MySGBD.grep("Multplataforma")]
 
-#deleta o registro com a chave primaria FinalFantasyX2014
-MySGBD.delete(MySGBD.grep_by_fk("FinalFantasyX2014"))
+# #deleta o registro com a chave primaria FinalFantasyX2014
+# MySGBD.delete(MySGBD.grep_by_fk("FinalFantasyX2014"))
 
-#execute este arquivo para ver ao vivaço as alterações em example.txt
+# #execute este arquivo para ver ao vivaço as alterações em example.txt

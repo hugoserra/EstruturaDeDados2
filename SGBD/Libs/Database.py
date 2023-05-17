@@ -67,6 +67,8 @@ class DatabaseTools:
 
             line, i = self.DB_File.readline(), i+1
 
+        return None
+
 
     #retorna os registros correspondentes em forma de dicionario, onde os atributos podem ser recuperados
     #mas não é uma função linear pois aloca toda a base na memoria ram (será atualizada futuramente)
@@ -76,7 +78,7 @@ class DatabaseTools:
     def get_header(self):
         header_str = self.DB_File.get_header()
         header = {}
-        attributes = header_str.split(',')
+        attributes = header_str.strip().split(' ')
 
         for attribute in attributes:
             key_value = attribute.split('=')
@@ -86,12 +88,13 @@ class DatabaseTools:
                 pass
             header[key_value[0]] = key_value[1]
 
+        print(header)
         return header
     
     def update_header(self):
         header_str = ''
         for key,value in self.Header.items(): 
-            header_str += f"{key}={value},"
+            header_str += f"{key}={value} "
         
         header_str = f"{header_str[:-1]}"
         self.DB_File.set_header(header_str)
@@ -142,13 +145,15 @@ class Database(DatabaseTools):
             return
         
         self.DB_File.pointer_reset()
-
-        for x in range(0,index):
+        line = ''
+        for x in range(0,index+1):
             line = self.DB_File.archive.readline()
             if(line == ""):
                 return 0
+            if(line[0] == "*"):
+                return 0
             
-        self.DB_File.archive.seek(self.DB_File.archive.tell())#Aponta o ponteiro de leitura para o inicio do arquivo
+        self.DB_File.archive.seek(self.DB_File.archive.tell()-len(line)-1)#Aponta o ponteiro de leitura para o inicio do arquivo
         self.DB_File.archive.write(f"*{self.Header['TOP']}|")
 
         self.Header['TOP'] = index;
