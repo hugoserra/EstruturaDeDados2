@@ -146,12 +146,15 @@ class Database(DatabaseTools):
         
         self.DB_File.pointer_reset()
         line = ''
-        for x in range(0,index+1):
+        i = 0
+        while i < index+1:
             line = self.DB_File.archive.readline()
             if(line == ""):
                 return 0
-            if(line[0] == "*"):
-                return 0
+            if(line[0] == "*" and i==index):
+                return
+            
+            i+=1
             
         self.DB_File.archive.seek(self.DB_File.archive.tell()-len(line)-1)#Aponta o ponteiro de leitura para o inicio do arquivo
         self.DB_File.archive.write(f"*{self.Header['TOP']}|")

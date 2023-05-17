@@ -27,7 +27,7 @@ class DatabaseFile:#Esta classe recebera a base de dados
         header = self.archive.readline()[:-1]
 
         if(len(header) <= 10): #se cabeçalho invalido
-            header = f"REG.N=0,TOP=-1" #caso o cabeçalho seja invalido, usará este como padrao
+            header = f"REG.N=0 TOP=-1" #caso o cabeçalho seja invalido, usará este como padrao
             self.archive.seek(0, 0)#Aponta o ponteiro de leitura para o inicio do arquivo
             self.archive.write(f"{header}{50*' '}\n")
 

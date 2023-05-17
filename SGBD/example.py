@@ -44,7 +44,7 @@ print("\n")
 print(MySGBD.Header())
 
 #deleta o quinto registro da base, e atualiza o top
-MySGBD.delete(1)
+MySGBD.delete(2)
 
 # #deleta todo registro que tem Multplataforma em algum lugar 
 # #método ainda não recomendado, possui alguns bugs as referencias de arquivos deletados
