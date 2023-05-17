@@ -116,11 +116,13 @@ class Database(DatabaseTools):
             attribute = self.register.get_attributes()[key] if(key in self.register.get_attributes()) else ""
             register_fixed_fields += self.set_pipe(attribute)
 
-        self.DB_File.write(f"{register_fixed_fields}\n")
-        self.register = Register()
+        self.DB_File.pointer_reset()
+        if(self.DB_File.archive.read().find(register_fixed_fields) == -1):
+            self.DB_File.write(f"{register_fixed_fields}\n")
+            self.register = Register()
 
-        self.Header['REG_N'] += 1
-        self.update_header()
+            self.Header['REG.N'] += 1
+            self.update_header()
 
     def read(self):
         registers = []
@@ -150,6 +152,7 @@ class Database(DatabaseTools):
         self.DB_File.archive.write(f"*{self.Header['TOP']}|")
 
         self.Header['TOP'] = index;
+        self.Header['REG.N'] -= 1;
         self.update_header()
 
     #função não linear, carrega tudo na memoria, vai ser corrigida futuramente
