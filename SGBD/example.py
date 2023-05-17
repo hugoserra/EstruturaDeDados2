@@ -46,4 +46,7 @@ MySGBD.delete(5)
 #deleta todo registro que tem Multplataforma em algum lugar 
 [MySGBD.delete(i) for i in MySGBD.grep("Multplataforma")]
 
+#deleta o registro com a chave primaria FinalFantasyX2014
+MySGBD.delete(MySGBD.grep_by_fk("FinalFantasyX2014"))
+
 #execute este arquivo para ver ao vivaço as alterações em example.txt

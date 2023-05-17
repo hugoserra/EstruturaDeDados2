@@ -10,8 +10,14 @@ class Register:
     def set_register(self,dict):
         self.__dict__ = dict.copy()
 
+    def set_str_register(self,fields,str_register):
+        self.set_register(dict(zip(fields, str_register.split('|'))))
+
     def get_attributes(self):
         return self.__dict__.copy()
+    
+    def get_fk(self):
+        return (f"{self.__dict__.copy()['Titulo']}{self.__dict__.copy()['Ano']}").replace(" ","").upper()
 
 # Esta classe abriga algums métodos uteis porem muito especificos, é herdada por Database
 # Assim, Database herda esses métodos, mas abstraindo a complexidade do código da classe Database
@@ -55,9 +61,8 @@ class DatabaseTools:
         register, line, i = Register(), self.DB_File.readline(), 0
         while line != None:
             if(line[0] != "*"):
-                register.set_register(dict(zip(self.fields, line.split('|'))))
-                r_first_key = (f"{register.get_attributes()['Titulo']}{register.get_attributes()['Ano']}").replace(" ","").upper()
-                if(first_key == r_first_key):
+                register.set_str_register(self.fields,line)
+                if(first_key == register.get_fk()):
                     return i
 
             line, i = self.DB_File.readline(), i+1
