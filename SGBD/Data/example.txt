@@ -1,25 +1,4 @@
-REG_N=28,TOP=23                                          
-Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy X|Square Enix|Action RPG|pariz|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-*0|al Fantasu X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
+REG_N=3,TOP=2                                                   
+The Wither 2|Riot Games|RPG|Xbox|2010|16+|99.0|Digital|15.5|
+*-1|l Fantasy XV|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
+*1|low Knight|Square Enix|Metroidvania|Multplataforma|2011|Teen|125.0|Ambos|20|

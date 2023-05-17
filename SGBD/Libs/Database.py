@@ -135,7 +135,9 @@ class Database(DatabaseTools):
         return registers
     
     def delete(self,index):
-
+        if(index == None):
+            return
+        
         self.DB_File.pointer_reset()
 
         for x in range(0,index):

@@ -37,6 +37,6 @@ class DatabaseFile:#Esta classe recebera a base de dados
         tell = self.archive.tell()#Captura a posição atual do ponteiro
 
         self.archive.seek(0, 0)#Aponta o ponteiro de leitura para o inicio do arquivo
-        self.archive.write(header)
+        self.archive.write(f"{header}         ")
 
         self.archive.seek(tell)
