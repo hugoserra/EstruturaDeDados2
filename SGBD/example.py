@@ -43,4 +43,7 @@ print(MySGBD.Header())
 #deleta o quinto registro da base, e atualiza o top
 MySGBD.delete(5)
 
+#deleta todo registro que tem Multplataforma em algum lugar 
+[MySGBD.delete(i) for i in MySGBD.grep("Multplataforma")]
+
 #execute este arquivo para ver ao vivaço as alterações em example.txt

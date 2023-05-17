@@ -1,9 +1,8 @@
-REG_N=28,TOP=5                                            
+REG_N=28,TOP=23                                          
 Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-*0|al Fantasy Y|Square Enix|Action RPG|hugo|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy X|Square Enix|Action RPG|pariz|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
@@ -14,7 +13,6 @@ Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.
 Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-*Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
@@ -23,7 +21,5 @@ Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.
 Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-*Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
 Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy Y|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
-Final Fantasy X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|
+*0|al Fantasu X|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5|

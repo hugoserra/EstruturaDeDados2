@@ -37,6 +37,9 @@ class SGBD:
 
     def grep_register(self,consulta):
         return self.DB.grep_register(consulta)
+    
+    def grep_by_fk(self,first_key):
+        return self.DB.grep_by_fk(first_key)
 
     def set_database_archive(self,archive):
         self.DB.set_database_archive(archive)

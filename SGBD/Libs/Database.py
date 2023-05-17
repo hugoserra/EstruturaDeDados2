@@ -48,6 +48,21 @@ class DatabaseTools:
 
         return lines
 
+    #retorna o index da chave primaria caso exista, senão None
+    def grep_by_fk(self,first_key):
+        first_key = first_key.replace(" ","").upper()
+        self.DB_File.pointer_reset()
+        register, line, i = Register(), self.DB_File.readline(), 0
+        while line != None:
+            if(line[0] != "*"):
+                register.set_register(dict(zip(self.fields, line.split('|'))))
+                r_first_key = (f"{register.get_attributes()['Titulo']}{register.get_attributes()['Ano']}").replace(" ","").upper()
+                if(first_key == r_first_key):
+                    return i
+
+            line, i = self.DB_File.readline(), i+1
+
+
     #retorna os registros correspondentes em forma de dicionario, onde os atributos podem ser recuperados
     #mas não é uma função linear pois aloca toda a base na memoria ram (será atualizada futuramente)
     def get_registers(self,search):
@@ -118,7 +133,7 @@ class Database(DatabaseTools):
 
         self.DB_File.pointer_reset()
 
-        for x in range(0,index-1):
+        for x in range(0,index):
             line = self.DB_File.archive.readline()
             if(line == ""):
                 return 0
