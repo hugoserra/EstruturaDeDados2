@@ -1,5 +1,6 @@
 from Libs.Files import DatabaseFile
 import sys
+import re
 # classe responsavel por armazenar o registro de maneira facil de atualizar ou recuperar
 # utilizada como um dos atributos da classe Database
 class Register:
@@ -17,7 +18,7 @@ class Register:
         return self.__dict__.copy()
     
     def get_fk(self):
-        return (f"{self.__dict__.copy()['Titulo']}{self.__dict__.copy()['Ano']}").replace(" ","").upper()
+        return re.sub("[^0-9A-Z]","",(f"{self.__dict__.copy()['Titulo']}{self.__dict__.copy()['Ano']}").replace(" ","").upper())
 
 # Esta classe abriga algums métodos uteis porem muito especificos, é herdada por Database
 # Assim, Database herda esses métodos, mas abstraindo a complexidade do código da classe Database
@@ -56,7 +57,7 @@ class DatabaseTools:
 
     #retorna o index da chave primaria caso exista, senão None
     def grep_by_fk(self,first_key):
-        first_key = first_key.replace(" ","").upper()
+        first_key = re.sub("[^0-9A-Z]","",first_key.replace(" ","").upper())
         self.DB_File.pointer_reset()
         register, line, i = Register(), self.DB_File.readline(), 0
         while line != None:
@@ -98,8 +99,34 @@ class DatabaseTools:
         header_str = f"{header_str[:-1]}"
         self.DB_File.set_header(header_str)
         
-    
+    def override(self,str_register):
 
+        self.DB_File.pointer_reset()
+        Top = self.Header['TOP']
+        line = ''
+        i = 0
+        while i < Top+1:
+            line = self.DB_File.archive.readline()
+            if(line[0] == "*" and i == Top): #i == top por que se sobrescrever em outro lugar, vai perder as referencias
+                break
+            i+=1    
+
+        length_deleted_register = len(line)
+        length_new_register = len(str_register)+1
+
+        if(length_new_register <= length_deleted_register):
+            difference = length_deleted_register-length_new_register
+            self.DB_File.archive.seek(self.DB_File.archive.tell()-length_deleted_register-1)#Aponta o ponteiro de leitura para o inicio do arquivo
+            self.DB_File.write(f"{str_register}{' '*difference}\n")
+
+            self.Header['TOP'] = int(line[1:].split('|')[0]);
+            self.update_header()
+        else:
+            self.DB_File.write(f"{str_register}\n")
+
+        
+
+        
 # Os metodos desta classe (fora aqueles que são herdados de DatabaseTools) 
 # são responsaveis pela manipulação do arquivo .txt
 class Database(DatabaseTools):
@@ -111,18 +138,22 @@ class Database(DatabaseTools):
         self.register = Register()
         
     def write(self):
-        register_fixed_fields = ""
+        str_register = ""
 
         for key in self.fields:
             attribute = self.register.get_attributes()[key] if(key in self.register.get_attributes()) else ""
-            register_fixed_fields += self.set_pipe(attribute)
+            str_register += self.set_pipe(attribute)
 
-        register_fixed_fields = register_fixed_fields[:-1]
+        str_register = str_register[:-1]
         self.DB_File.pointer_reset()
-        if(self.DB_File.archive.read().find(register_fixed_fields) == -1):
-            self.DB_File.write(f"{register_fixed_fields}\n")
-            self.register = Register()
+        if(self.DB_File.archive.read().find(str_register) == -1):
 
+            if(self.Header['TOP'] != -1):
+                self.override(str_register)
+            else:
+                self.DB_File.write(f"{str_register}\n")
+
+            self.register = Register()
             self.Header['REG.N'] += 1
             self.update_header()
 
