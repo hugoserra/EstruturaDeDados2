@@ -54,3 +54,6 @@ class AT2_Facade:
 
 
 run = AT2_Facade()
+
+#Chamada via prompt
+#python ED2-AT02-UpdateRegistros-HugoCarvalhoSerra.py input1.txt op1.txt temp1.txt output1.txt
