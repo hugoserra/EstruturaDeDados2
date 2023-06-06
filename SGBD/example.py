@@ -1,6 +1,6 @@
 from Libs.SGBD import SGBD
 
-MySGBD = SGBD().set_database_archive("Data/example.txt")
+MySGBD = SGBD("Data/example.txt")
 
 #O metodo set_attribute pode ser encadeado com diversos outros métodos
 MySGBD.set_attribute('Titulo',"The Wither 2")

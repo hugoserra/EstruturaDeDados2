@@ -5,10 +5,11 @@ import pandas as pd #Pandas apenas é utilizado para fins de exibição indentad
 # auxiliar na compreensao do código.
 class SGBD:
 
-    def __init__(self):
+    def __init__(self,archive):
         self.type = type
         self.DB = None
         self.config()
+        self.set_database_archive(archive)
 
     def config(self):
         self.DB = Database() # a classe Database é responsavel por todas as operações de r+ na base.txt
@@ -19,6 +20,10 @@ class SGBD:
 
     def set_register(self,register):
         self.DB.register.set_register(register)
+        return self
+    
+    def set_fields(self,fields):
+        self.DB.fields = fields;
         return self
 
     def write(self):
@@ -42,7 +47,13 @@ class SGBD:
         return self.DB.grep_by_fk(first_key)
 
     def set_database_archive(self,archive):
-        self.DB.set_database_archive(archive)
+        try:
+            self.DB.set_database_archive(archive)
+        except:
+            ark = open(archive,'a+')
+            ark.close()
+            self.DB.set_database_archive(archive)
+
         return self
     
     def Header(self):
