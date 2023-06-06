@@ -2,4 +2,3 @@ REG.N=2 TOP=2
 The Wither 2|Riot Games|RPG|Xbox|2010|16+|99.0|Digital|15.5
 Final Fantasy XV|Square Enix|Action RPG|Multplataforma|2014|Teen|125.0|Ambos|100.5
 *-1|ow Knight|Square Enix|Metroidvania|Multplataforma|2011|Teen|125.0|Ambos|20
-*2|low Knight|Square Enix|Metroidvania|Multplataforma|2011|Teen|125.0|Ambos|20

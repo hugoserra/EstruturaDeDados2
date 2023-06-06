@@ -39,12 +39,12 @@ MySGBD.show()
 print(MySGBD.grep('Fantasy'))
 print(MySGBD.grep_register('Fantasy'))
 
+#deleta o quinto registro da base, e atualiza o top
+MySGBD.delete(2)
+
 #Exibe o cabeçalho do arquivo de banco de dados
 print("\n")
 print(MySGBD.Header())
-
-#deleta o quinto registro da base, e atualiza o top
-MySGBD.delete(2)
 
 # #deleta todo registro que tem Multplataforma em algum lugar 
 # #método ainda não recomendado, possui alguns bugs as referencias de arquivos deletados
