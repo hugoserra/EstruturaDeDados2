@@ -26,6 +26,9 @@ class DatabaseTools:
 
     def set_pipe(self,str):
         return f"{str}|"
+    
+    def set_size(self,str,size):
+        return f"{str}" + (size-len(str)) * " "
 
     def set_database_archive(self,archive_name):
         self.DB_File = DatabaseFile(archive_name)
@@ -139,7 +142,6 @@ class Database(DatabaseTools):
         
     def write(self):
         str_register = ""
-
         for key in self.fields:
             attribute = self.register.get_attributes()[key] if(key in self.register.get_attributes()) else ""
             str_register += self.set_pipe(attribute)
@@ -151,7 +153,7 @@ class Database(DatabaseTools):
             if(self.Header['TOP'] != -1):
                 self.override(str_register)
             else:
-                self.DB_File.write(f"{str_register}\n")
+                self.DB_File.write(f"{self.set_size(str_register,self.Header['SIZE']-1)}\n")
 
             self.register = Register()
             self.Header['QTDE'] += 1

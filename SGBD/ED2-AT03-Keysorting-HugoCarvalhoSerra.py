@@ -56,11 +56,13 @@ class AT03_Facade:
         if(self.input_header['ORDER']=='C'):
             for key in self.keys:
                 MySGBD_OutPut.set_register(self.data[key]).write()
+
         elif(self.input_header['ORDER']=='D'):
             for key in reversed(self.keys):
                 MySGBD_OutPut.set_register(self.data[key]).write()
+
         else:
             raise Exception("\nOs parametros de ordenação são invalidos!")        
 
-#teste.py Data/AT03CasosDeTeste/input8.txt output.txt
+#python ED2-AT03-Keysorting-HugoCarvalhoSerra.py Data/AT03CasosDeTeste/input1.txt output.txt
 run = AT03_Facade()
